@@ -16,7 +16,7 @@ public class IamScript : MonoBehaviour
     [SerializeField] Button Button;
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Got_EN_Date GotDate; //取得模組的資料並提取需要的內容
-    public enum GotWhat
+    public enum GotWhat //用於按鈕使用,方便處裡只提取特定資料的按鈕運用
     {
         ItemName = 0,
         ContextMenu = 1,
