@@ -76,7 +76,7 @@ public class IamScript : MonoBehaviour
             }
         }
     }
-    void Load()
+    void Load() //開始統整
     {
         try
         {
