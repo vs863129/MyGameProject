@@ -107,7 +107,7 @@ public class IamScript : MonoBehaviour
             Button.interactable = true;
         }
     }
-    bool FileDone(string FileName) //用於為新檔寫開頭的固定模板用(例如ItemName_CH = {),如果已寫過則跳過
+    bool FileDone(string FileName) //用於為新檔寫開頭的固定模板用(例如 ItemName_CH = { ),如果已寫過則跳過
     {
 
         foreach(string File in Files)
