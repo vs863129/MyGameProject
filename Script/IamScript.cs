@@ -40,7 +40,7 @@ public class IamScript : MonoBehaviour
         }
 
     }
-    public void Exit()
+    public void Exit() //關閉軟體用
     {
         Application.Quit();
     }
