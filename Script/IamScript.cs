@@ -45,13 +45,13 @@ public class IamScript : MonoBehaviour
         Application.Quit();
     }
     #region 統合檔案用
-    public void Action()
+    public void Action() //執行按鈕使用
     {
         Button.interactable = false;
         text.text = "Loading...";
-        Invoke(nameof(Load),1);
+        Invoke(nameof(Load),1); //1秒的延遲執行,使按鈕和文字顯示有時間切換
     }
-    public void SearchFolder()
+    public void SearchFolder() //檢查CH資料夾內是否有其他資料夾 //少部分模組才會抓到資料夾
     {
         List <DirectoryInfo> Found_Folders=new List<DirectoryInfo>();
         DirectoryInfo directoryInfo = new DirectoryInfo(M_FOLDER);
@@ -98,7 +98,7 @@ public class IamScript : MonoBehaviour
             WriterLastText();
             text.text = "Done";
         }
-        catch(Exception Error)
+        catch(Exception Error) //如果出錯則打印資料並存在Console裡面 
         {
             TextWriter writer = new StreamWriter(C_FOLDER+"/Log.txt", true);
             writer.WriteLine("[" + DateTime.Now + "]" + Error.Message);
@@ -106,9 +106,8 @@ public class IamScript : MonoBehaviour
             text.text = "ERROR";
             Button.interactable = true;
         }
-
     }
-    bool FileDone(string FileName)
+    bool FileDone(string FileName) //用於為新檔寫開頭的固定模板用(例如ItemName_CH = {),如果已寫過則跳過
     {
 
         foreach(string File in Files)
@@ -122,10 +121,10 @@ public class IamScript : MonoBehaviour
     }
     void Write(FileInfo file, TextWriter Writer)
     {
-        if (!FileDone(file.Name))
+        if (!FileDone(file.Name))//確認檔案是否有被創建過
         {
             string[] date = File.ReadAllLines(file.FullName);
-            if (file.Name != "Recorded_Media_CH.txt")
+            if (file.Name != "Recorded_Media_CH.txt") //該檔案本身沒有類似( ItemName_CH = { )的模板,故然跳過
             {
                 Writer.WriteLine(date[0]);
             }
@@ -133,7 +132,7 @@ public class IamScript : MonoBehaviour
         }
         WriteText(file, Writer);
     }
-    static void WriteText(FileInfo file,TextWriter Writer)
+    static void WriteText(FileInfo file,TextWriter Writer)//寫內文
     {
         int i = 0;
         while (i< w_date(file).Count)
@@ -142,7 +141,7 @@ public class IamScript : MonoBehaviour
             i++;
         }
     }
-    public void WriterLastText()
+    void WriterLastText() //寫收尾的 }
     {
         foreach (string FileName in Files)
         {
@@ -154,7 +153,7 @@ public class IamScript : MonoBehaviour
             writer.Close();
         }
     }
-    static void ClearFolderDate()
+    static void ClearFolderDate() //清除空資料夾
     {
         DirectoryInfo Folder= new DirectoryInfo(P_FOLDER);
         FileInfo[] files = Folder.GetFiles();
@@ -163,7 +162,7 @@ public class IamScript : MonoBehaviour
             file.Delete();
         }
     }
-    static List<string> w_date(FileInfo file)
+    static List<string> w_date(FileInfo file) //專門寫內文的程式碼
     {
         string[] W_DATE = File.ReadAllLines(file.FullName);
         List<string> date = new List<string>();
