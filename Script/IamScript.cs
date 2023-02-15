@@ -44,7 +44,7 @@ public class IamScript : MonoBehaviour
     {
         Application.Quit();
     }
-    #region ²Î¦XÀÉ®×
+    #region çµ±åˆæª”æ¡ˆç”¨
     public void Action()
     {
         Button.interactable = false;
@@ -250,7 +250,7 @@ public class Got_EN_Date
         {
             ALL_DATE = ALLDATE;
             ALL_DATENAME = DATENAME;
-            Debug.LogError("¨ú±oªºDATE¤£¥¿½T");
+            Debug.LogError("Â¨ÃºÂ±oÂªÂºDATEÂ¤Â£Â¥Â¿Â½T");
         }
     }
     string ContextMenuDate(string DATE)
