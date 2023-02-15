@@ -15,7 +15,7 @@ public class IamScript : MonoBehaviour
     public static readonly string C_FOLDER = Application.dataPath + "/Console";
     [SerializeField] Button Button;
     [SerializeField] TextMeshProUGUI text;
-    [SerializeField] Got_EN_Date GotDate;
+    [SerializeField] Got_EN_Date GotDate; //取得模組的資料並提取需要的內容
     public enum GotWhat
     {
         ItemName = 0,
@@ -27,7 +27,7 @@ public class IamScript : MonoBehaviour
         Directory.CreateDirectory(P_FOLDER);
         Directory.CreateDirectory(C_FOLDER);
     }
-    public void GotENDate(int what)
+    public void GotENDate(int what) //因變動較大,只在編輯器內用
     {
         switch (what)
         {
@@ -51,7 +51,7 @@ public class IamScript : MonoBehaviour
         text.text = "Loading...";
         Invoke(nameof(Load),1); //1秒的延遲執行,使按鈕和文字顯示有時間切換
     }
-    public void SearchFolder() //檢查CH資料夾內是否有其他資料夾 //少部分模組才會抓到資料夾
+    public void SearchFolder() //檢查CH資料夾內是否有其他資料夾.(少部分模組才會抓到資料夾)
     {
         List <DirectoryInfo> Found_Folders=new List<DirectoryInfo>();
         DirectoryInfo directoryInfo = new DirectoryInfo(M_FOLDER);
