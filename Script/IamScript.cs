@@ -21,7 +21,7 @@ public class IamScript : MonoBehaviour
         ItemName = 0,
         ContextMenu = 1,
     }
-    public void Awake()
+    public void Awake() //創建預設資料夾
     {
         Directory.CreateDirectory(M_FOLDER);
         Directory.CreateDirectory(P_FOLDER);
@@ -98,7 +98,7 @@ public class IamScript : MonoBehaviour
             WriterLastText();
             text.text = "Done";
         }
-        catch(Exception Error) //如果出錯則打印資料並存在Console裡面 
+        catch(Exception Error) //如果出錯則打印資料並存在Console裡面,按鈕則會顯示ERROR且不可按
         {
             TextWriter writer = new StreamWriter(C_FOLDER+"/Log.txt", true);
             writer.WriteLine("[" + DateTime.Now + "]" + Error.Message);
@@ -166,8 +166,8 @@ public class IamScript : MonoBehaviour
     {
         string[] W_DATE = File.ReadAllLines(file.FullName);
         List<string> date = new List<string>();
-        int i = 1;
-        if(file.Name== "Recorded_Media_CH.txt")
+        int i = 1; //通常每個檔案,第一行固定有重複性模板,且一個檔案只需要一個,故然跳過
+        if(file.Name== "Recorded_Media_CH.txt") //通常都直接接內容,固然不跳過並全寫入
         {
             i = 0;
         }
@@ -191,7 +191,7 @@ public class IamScript : MonoBehaviour
     #endregion
 }
 [System.Serializable]
-public class Got_EN_Date
+public class Got_EN_Date //在編輯器內使用,因未適用於大多數模組提取資料用,導致會經常變換,Build出來的時候,按鈕是鎖定的
 {
     [SerializeField] string TESTDATE;
     public static readonly string D_FOLDER = Application.dataPath + "/AllDate";
